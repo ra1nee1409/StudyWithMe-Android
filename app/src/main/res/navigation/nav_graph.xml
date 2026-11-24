@@ -3,26 +3,173 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/homeFragment">
+
+    <!-- Auth -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.studywithme.android.feature.auth.ui.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.studywithme.android.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/registerFragment"
+        android:name="com.studywithme.android.feature.auth.ui.RegisterFragment"
+        android:label="@string/title_register"
+        tools:layout="@layout/fragment_register" />
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
+    <!-- Home -->
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.studywithme.android.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/homeFragment"
+        android:name="com.studywithme.android.feature.home.ui.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_home_to_notification"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_home_to_course_detail"
+            app:destination="@id/courseDetailFragment" />
     </fragment>
+
+    <!-- Courses -->
+    <fragment
+        android:id="@+id/courseListFragment"
+        android:name="com.studywithme.android.feature.course.ui.CourseListFragment"
+        android:label="@string/title_course_list"
+        tools:layout="@layout/fragment_course_list">
+        <action
+            android:id="@+id/action_course_list_to_detail"
+            app:destination="@id/courseDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/courseDetailFragment"
+        android:name="com.studywithme.android.feature.course.ui.CourseDetailFragment"
+        android:label="@string/title_course_detail"
+        tools:layout="@layout/fragment_course_detail">
+        <action
+            android:id="@+id/action_course_detail_to_player"
+            app:destination="@id/learningPlayerFragment" />
+        <action
+            android:id="@+id/action_course_detail_to_checkout"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/learningPlayerFragment"
+        android:name="com.studywithme.android.feature.course.ui.LearningPlayerFragment"
+        android:label="@string/title_learning_player"
+        tools:layout="@layout/fragment_learning_player" />
+
+    <!-- Tutors & Booking 1:1 -->
+    <fragment
+        android:id="@+id/tutorListFragment"
+        android:name="com.studywithme.android.feature.tutor.ui.TutorListFragment"
+        android:label="@string/title_tutor_list"
+        tools:layout="@layout/fragment_tutor_list">
+        <action
+            android:id="@+id/action_tutor_list_to_detail"
+            app:destination="@id/tutorDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tutorDetailFragment"
+        android:name="com.studywithme.android.feature.tutor.ui.TutorDetailFragment"
+        android:label="@string/title_tutor_detail"
+        tools:layout="@layout/fragment_tutor_detail">
+        <action
+            android:id="@+id/action_tutor_detail_to_booking"
+            app:destination="@id/booking1k1Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/booking1k1Fragment"
+        android:name="com.studywithme.android.feature.tutor.ui.Booking1k1Fragment"
+        android:label="@string/title_booking_1k1"
+        tools:layout="@layout/fragment_booking_1k1">
+        <action
+            android:id="@+id/action_booking_to_checkout"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <!-- Payment -->
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.studywithme.android.feature.payment.ui.CheckoutFragment"
+        android:label="@string/title_checkout"
+        tools:layout="@layout/fragment_checkout">
+        <action
+            android:id="@+id/action_checkout_to_payos"
+            app:destination="@id/payOsWebViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/payOsWebViewFragment"
+        android:name="com.studywithme.android.feature.payment.ui.PayOsWebViewFragment"
+        android:label="@string/title_payos_webview"
+        tools:layout="@layout/fragment_payos_webview" />
+
+    <!-- Chat -->
+    <fragment
+        android:id="@+id/conversationListFragment"
+        android:name="com.studywithme.android.feature.chat.ui.ConversationListFragment"
+        android:label="@string/title_conversation_list"
+        tools:layout="@layout/fragment_conversation_list">
+        <action
+            android:id="@+id/action_conversations_to_chat_room"
+            app:destination="@id/chatRoomFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatRoomFragment"
+        android:name="com.studywithme.android.feature.chat.ui.ChatRoomFragment"
+        android:label="@string/title_chat_room"
+        tools:layout="@layout/fragment_chat_room" />
+
+    <!-- Notification -->
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.studywithme.android.feature.notification.ui.NotificationFragment"
+        android:label="@string/title_notification"
+        tools:layout="@layout/fragment_notification" />
+
+    <!-- Profile -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.studywithme.android.feature.profile.ui.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_edit"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profile_to_change_password"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_profile_to_login"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.studywithme.android.feature.profile.ui.EditProfileFragment"
+        android:label="@string/title_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.studywithme.android.feature.profile.ui.ChangePasswordFragment"
+        android:label="@string/title_change_password"
+        tools:layout="@layout/fragment_change_password" />
+
 </navigation>
