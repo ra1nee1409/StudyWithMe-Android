@@ -139,32 +139,6 @@ public final class HomeModels {
         }
     }
 
-    public static class ParentReviewItem {
-        @NonNull
-        public final String quote;
-        @NonNull
-        public final String authorName;
-        @NonNull
-        public final String authorRole;
-        @Nullable
-        public final String avatarUrl;
-        public final boolean warmAvatarBg;
-
-        public ParentReviewItem(
-                @NonNull String quote,
-                @NonNull String authorName,
-                @NonNull String authorRole,
-                @Nullable String avatarUrl,
-                boolean warmAvatarBg
-        ) {
-            this.quote = quote;
-            this.authorName = authorName;
-            this.authorRole = authorRole;
-            this.avatarUrl = avatarUrl;
-            this.warmAvatarBg = warmAvatarBg;
-        }
-    }
-
     public static class HomeUiData {
         @Nullable
         public final String bannerBadgeText;
@@ -172,8 +146,6 @@ public final class HomeModels {
         public final List<HomeCategoryItem> categories;
         @NonNull
         public final List<HomeTutorItem> tutors;
-        @NonNull
-        public final List<ParentReviewItem> reviews;
         public final long unreadNotifications;
         public final boolean syncedFromApi;
 
@@ -181,14 +153,12 @@ public final class HomeModels {
                 @Nullable String bannerBadgeText,
                 @NonNull List<HomeCategoryItem> categories,
                 @NonNull List<HomeTutorItem> tutors,
-                @NonNull List<ParentReviewItem> reviews,
                 long unreadNotifications,
                 boolean syncedFromApi
         ) {
             this.bannerBadgeText = bannerBadgeText;
             this.categories = categories;
             this.tutors = tutors;
-            this.reviews = reviews;
             this.unreadNotifications = unreadNotifications;
             this.syncedFromApi = syncedFromApi;
         }
@@ -406,32 +376,11 @@ public final class HomeModels {
     }
 
     @NonNull
-    public static List<ParentReviewItem> defaultReviews() {
-        return Collections.unmodifiableList(Arrays.asList(
-                new ParentReviewItem(
-                        "“Bé Minh Anh nhà mình trước đây rất sợ môn Toán, chỉ được 5.0. Nhờ cô Yến kiên nhẫn giảng giải 1-1, học kỳ rồi con đã vươn lên 8.8. Rất yên tâm!”",
-                        "Chị Thanh Hương",
-                        "Mẹ bé Minh Anh (Lớp 9 - Hà Nội)",
-                        null,
-                        false
-                ),
-                new ParentReviewItem(
-                        "“Hệ thống báo cáo sau buổi học rất minh bạch, ba mẹ bận rộn vẫn theo dõi sát bài học của con. Thầy dạy tiếng Anh phát âm cực chuẩn và sinh động.”",
-                        "Anh Phan Trọng Đức",
-                        "Bố học sinh Hoàng Nam (Lớp 11)",
-                        null,
-                        true
-                )
-        ));
-    }
-
-    @NonNull
     public static HomeUiData defaultUiData() {
         return new HomeUiData(
                 null,
                 defaultCategories(),
                 defaultTutors(),
-                defaultReviews(),
                 1L,
                 false
         );

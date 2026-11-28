@@ -207,70 +207,185 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <!-- Secondary Quick Filters & Result Count -->
+        <!-- Sort Options Bar & Result Count -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingEnd="20dp">
 
-            <TextView
-                android:id="@+id/chipUnder200k"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:background="@drawable/bg_rounded_12"
-                android:backgroundTint="@color/surface_container_low"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="6dp"
-                android:text="&lt; 170k/buổi"
-                android:textColor="@color/on_surface"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/chipRating49"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:background="@drawable/bg_rounded_12"
-                android:backgroundTint="@color/accent_coral_subtle"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="6dp"
-                android:text="★ 4.95+"
-                android:textColor="@color/tertiary"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_rounded_12"
-                android:backgroundTint="@color/surface_container_low"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="6dp"
-                android:text="Online 1-1"
-                android:textColor="@color/on_surface_variant"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvTutorCount"
+            <HorizontalScrollView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingStart="20dp"
+                android:paddingEnd="8dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chipSortRatingDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/bg_rounded_12"
+                        android:backgroundTint="@color/accent_coral_subtle"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp"
+                        android:text="★ Đánh giá cao nhất"
+                        android:textColor="@color/tertiary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/chipSortRatingAsc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/bg_rounded_12"
+                        android:backgroundTint="@color/surface_container_low"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp"
+                        android:text="Đánh giá thấp nhất"
+                        android:textColor="@color/on_surface_variant"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/chipSortPriceAsc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/bg_rounded_12"
+                        android:backgroundTint="@color/surface_container_low"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp"
+                        android:text="Giá thấp → cao"
+                        android:textColor="@color/on_surface_variant"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/chipSortPriceDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_rounded_12"
+                        android:backgroundTint="@color/surface_container_low"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp"
+                        android:text="Giá cao → thấp"
+                        android:textColor="@color/on_surface_variant"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/tvTutorCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
                 android:textColor="@color/on_surface_variant"
                 android:textSize="11sp"
                 android:textStyle="bold"
                 tools:text="4 gia sư" />
         </LinearLayout>
+
+        <!-- Custom Price Range Panel (toggled via filter icon) -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPriceRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/surface_card"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Khoảng học phí mong muốn (đ/buổi)"
+                    android:textColor="@color/on_surface"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etPriceMin"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_rounded_12"
+                        android:backgroundTint="@color/surface_container_low"
+                        android:hint="Từ (VD: 150000)"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/on_surface"
+                        android:textColorHint="@color/outline"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:text="–"
+                        android:textColor="@color/outline"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/etPriceMax"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_rounded_12"
+                        android:backgroundTint="@color/surface_container_low"
+                        android:hint="Đến (VD: 200000)"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/on_surface"
+                        android:textColorHint="@color/outline"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Smart Recommendation Banner -->
         <com.google.android.material.card.MaterialCardView

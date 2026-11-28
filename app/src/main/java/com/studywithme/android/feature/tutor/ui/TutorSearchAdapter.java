@@ -14,12 +14,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.studywithme.android.R;
 import com.studywithme.android.databinding.ItemTutorSearchCardBinding;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.annotation.Nullable;
+
 public class TutorSearchAdapter
         extends ListAdapter<TutorSearchAdapter.TutorCardModel, TutorSearchAdapter.ViewHolder> {
+
+    public enum SortOption {
+        DEFAULT,
+        RATING_DESC,
+        RATING_ASC,
+        PRICE_ASC,
+        PRICE_DESC
+    }
 
     public static class TutorCardModel {
         public final long id;
@@ -156,6 +168,53 @@ public class TutorSearchAdapter
             binding.btnViewProfile.setOnClickListener(v -> listener.onOpenProfile(item));
             binding.btnBookTrial.setOnClickListener(v -> listener.onBookTrial(item));
         }
+    }
+
+    @NonNull
+    public static List<TutorCardModel> filterAndSort(
+            @NonNull List<TutorCardModel> source,
+            @NonNull String subject,
+            @Nullable String query,
+            @Nullable Integer minPrice,
+            @Nullable Integer maxPrice,
+            @NonNull SortOption sortOption
+    ) {
+        Integer effectiveMin = minPrice;
+        Integer effectiveMax = maxPrice;
+        if (effectiveMin != null && effectiveMax != null && effectiveMin > effectiveMax) {
+            int tmp = effectiveMin;
+            effectiveMin = effectiveMax;
+            effectiveMax = tmp;
+        }
+        String q = query == null ? "" : query.trim().toLowerCase(Locale.ROOT);
+        List<TutorCardModel> result = new ArrayList<>();
+        for (TutorCardModel item : source) {
+            boolean matchesSubject = "Tất cả".equals(subject) || item.subjectKey.equals(subject);
+            boolean matchesQuery = q.isEmpty() || item.searchBlob().contains(q);
+            boolean matchesMin = effectiveMin == null || item.priceValue >= effectiveMin;
+            boolean matchesMax = effectiveMax == null || item.priceValue <= effectiveMax;
+            if (matchesSubject && matchesQuery && matchesMin && matchesMax) {
+                result.add(item);
+            }
+        }
+        switch (sortOption) {
+            case RATING_DESC:
+                result.sort(Comparator.comparingDouble((TutorCardModel t) -> t.rating).reversed());
+                break;
+            case RATING_ASC:
+                result.sort(Comparator.comparingDouble(t -> t.rating));
+                break;
+            case PRICE_ASC:
+                result.sort(Comparator.comparingInt(t -> t.priceValue));
+                break;
+            case PRICE_DESC:
+                result.sort(Comparator.comparingInt((TutorCardModel t) -> t.priceValue).reversed());
+                break;
+            case DEFAULT:
+            default:
+                break;
+        }
+        return result;
     }
 
     @NonNull

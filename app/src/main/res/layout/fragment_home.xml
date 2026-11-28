@@ -1134,48 +1134,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- 6. Parent Reviews Carousel -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/section_reviews_title"
-                    android:textColor="@color/on_surface"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/section_reviews_subtitle"
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvParentReviews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                android:paddingVertical="4dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="8dp"
-                tools:itemCount="2"
-                tools:listitem="@layout/item_home_review" />
-
-            <!-- 7. Bottom CTA Banner -->
+            <!-- 6. Bottom CTA Banner -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

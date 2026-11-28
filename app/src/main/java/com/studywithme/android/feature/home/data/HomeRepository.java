@@ -44,7 +44,6 @@ public class HomeRepository {
                     bannerText,
                     categories,
                     tutors,
-                    HomeModels.defaultReviews(),
                     unreadCount,
                     syncedAny
             );

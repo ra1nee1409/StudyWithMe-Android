@@ -80,21 +80,17 @@
     <string name="tutor_empty_filter">Không tìm thấy gia sư phù hợp với bộ lọc hiện tại.</string>
     <string name="action_reset_filter">Đặt lại bộ lọc</string>
 
-    <!-- Why Choose -->
-    <string name="section_why_title">Vì sao phụ huynh tin chọn?</string>
+    <!-- Why Choose (Student-focused) -->
+    <string name="section_why_title">Vì sao học viên tin chọn?</string>
     <string name="section_why_subtitle">Chất lượng kiểm duyệt, cam kết đồng hành</string>
     <string name="why_1_title">Lớp 1-1 tương tác</string>
     <string name="why_1_desc">Bảng số ảo trực quan, phản xạ hỏi đáp ngay trong buổi học.</string>
     <string name="why_2_title">Báo cáo sau 90 phút</string>
-    <string name="why_2_desc">Cập nhật chi tiết kết quả và bài tập tự động về app phụ huynh.</string>
+    <string name="why_2_desc">Cập nhật chi tiết kết quả và bài tập tự động ngay trên ứng dụng.</string>
     <string name="why_3_title">Cam kết tiến bộ</string>
     <string name="why_3_desc" formatted="false">Hoàn tiền 100% học phí nếu không cải thiện kết quả sau 1 tháng.</string>
     <string name="why_4_title">Đổi gia sư miễn phí</string>
-    <string name="why_4_desc">Linh hoạt thay đổi giáo viên phù hợp với tính cách và mục tiêu con.</string>
-
-    <!-- Parent Reviews -->
-    <string name="section_reviews_title">Đánh giá từ phụ huynh</string>
-    <string name="section_reviews_subtitle">Kết quả thực tế từ những học sinh đồng hành</string>
+    <string name="why_4_desc">Linh hoạt thay đổi giáo viên phù hợp với phong cách và mục tiêu học tập.</string>
 
     <!-- Bottom CTA Banner -->
     <string name="bottom_cta_title">Đăng ký học thử 0đ</string>

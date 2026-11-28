@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -21,7 +22,6 @@ import com.studywithme.android.R;
 import com.studywithme.android.core.ui.components.UiComponentHelper;
 import com.studywithme.android.databinding.FragmentTutorListBinding;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -34,9 +34,35 @@ public class TutorListFragment extends Fragment {
 
     private String selectedSubject = "Tất cả";
     private String searchQuery = "";
-    private boolean onlyUnder170k = false;
-    private boolean onlyHighRating = false;
+    private TutorSearchAdapter.SortOption sortOption = TutorSearchAdapter.SortOption.DEFAULT;
+    @Nullable
+    private Integer minPrice = null;
+    @Nullable
+    private Integer maxPrice = null;
+
     private List<TextView> subjectChips;
+    private List<SortChipSpec> sortChips;
+
+    private static class SortChipSpec {
+        final TextView view;
+        final TutorSearchAdapter.SortOption option;
+        @ColorRes
+        final int defaultBgRes;
+        @ColorRes
+        final int defaultFgRes;
+
+        SortChipSpec(
+                TextView view,
+                TutorSearchAdapter.SortOption option,
+                @ColorRes int defaultBgRes,
+                @ColorRes int defaultFgRes
+        ) {
+            this.view = view;
+            this.option = option;
+            this.defaultBgRes = defaultBgRes;
+            this.defaultFgRes = defaultFgRes;
+        }
+    }
 
     @Nullable
     @Override
@@ -76,20 +102,12 @@ public class TutorListFragment extends Fragment {
     }
 
     private void setupSearchAndFilters() {
-        binding.etTutorSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
+        binding.etTutorSearch.addTextChangedListener(new SimpleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 searchQuery = s != null ? s.toString() : "";
                 binding.btnTutorClearSearch.setVisibility(searchQuery.isEmpty() ? View.GONE : View.VISIBLE);
                 applyFilters();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
             }
         });
 
@@ -121,50 +139,114 @@ public class TutorListFragment extends Fragment {
             });
         }
 
-        binding.chipUnder200k.setOnClickListener(v -> {
-            onlyUnder170k = !onlyUnder170k;
-            renderQuickToggle(binding.chipUnder200k, onlyUnder170k, R.color.surface_container_low, R.color.on_surface);
-            applyFilters();
+        sortChips = Arrays.asList(
+                new SortChipSpec(
+                        binding.chipSortRatingDesc,
+                        TutorSearchAdapter.SortOption.RATING_DESC,
+                        R.color.accent_coral_subtle,
+                        R.color.tertiary
+                ),
+                new SortChipSpec(
+                        binding.chipSortRatingAsc,
+                        TutorSearchAdapter.SortOption.RATING_ASC,
+                        R.color.surface_container_low,
+                        R.color.on_surface_variant
+                ),
+                new SortChipSpec(
+                        binding.chipSortPriceAsc,
+                        TutorSearchAdapter.SortOption.PRICE_ASC,
+                        R.color.surface_container_low,
+                        R.color.on_surface_variant
+                ),
+                new SortChipSpec(
+                        binding.chipSortPriceDesc,
+                        TutorSearchAdapter.SortOption.PRICE_DESC,
+                        R.color.surface_container_low,
+                        R.color.on_surface_variant
+                )
+        );
+        for (SortChipSpec spec : sortChips) {
+            spec.view.setOnClickListener(v -> {
+                sortOption = (sortOption == spec.option)
+                        ? TutorSearchAdapter.SortOption.DEFAULT
+                        : spec.option;
+                renderSortChips();
+                applyFilters();
+            });
+        }
+
+        binding.btnTutorFilterToggle.setOnClickListener(v -> {
+            boolean show = binding.cardPriceRange.getVisibility() != View.VISIBLE;
+            binding.cardPriceRange.setVisibility(show ? View.VISIBLE : View.GONE);
+            if (!show) {
+                UiComponentHelper.hideKeyboard(binding.etPriceMin);
+            }
         });
 
-        binding.chipRating49.setOnClickListener(v -> {
-            onlyHighRating = !onlyHighRating;
-            renderQuickToggle(binding.chipRating49, onlyHighRating, R.color.accent_coral_subtle, R.color.tertiary);
-            applyFilters();
+        binding.etPriceMin.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                minPrice = parsePriceOrNull(s);
+                applyFilters();
+            }
+        });
+
+        binding.etPriceMax.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                maxPrice = parsePriceOrNull(s);
+                applyFilters();
+            }
+        });
+
+        binding.etPriceMax.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                UiComponentHelper.hideKeyboard(v);
+                return true;
+            }
+            return false;
         });
 
         binding.btnTutorResetFilters.setOnClickListener(v -> resetFilters());
-        binding.btnTutorFilterToggle.setOnClickListener(v -> {
-            if (hasActiveFilters()) {
-                resetFilters();
-                UiComponentHelper.showToastMessage(binding.getRoot(), "Đã đặt lại bộ lọc gia sư");
-            } else {
-                onlyHighRating = true;
-                renderQuickToggle(binding.chipRating49, true, R.color.accent_coral_subtle, R.color.tertiary);
-                applyFilters();
-                UiComponentHelper.showToastMessage(binding.getRoot(), "Đang lọc gia sư đánh giá 4.95★+");
-            }
-        });
         binding.cardSmartSuggestion.setOnClickListener(v ->
                 UiComponentHelper.navigateSafely(binding.getRoot(), R.id.action_tutor_list_to_booking, null)
         );
     }
 
+    @Nullable
+    private static Integer parsePriceOrNull(@Nullable CharSequence text) {
+        if (text == null) {
+            return null;
+        }
+        String digits = text.toString().trim();
+        if (digits.isEmpty()) {
+            return null;
+        }
+        try {
+            return Integer.parseInt(digits);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
     private boolean hasActiveFilters() {
         return !"Tất cả".equals(selectedSubject)
-                || onlyUnder170k
-                || onlyHighRating
+                || sortOption != TutorSearchAdapter.SortOption.DEFAULT
+                || minPrice != null
+                || maxPrice != null
                 || !searchQuery.trim().isEmpty();
     }
 
     private void resetFilters() {
         selectedSubject = "Tất cả";
-        onlyUnder170k = false;
-        onlyHighRating = false;
+        sortOption = TutorSearchAdapter.SortOption.DEFAULT;
+        minPrice = null;
+        maxPrice = null;
         binding.etTutorSearch.setText("");
+        binding.etPriceMin.setText("");
+        binding.etPriceMax.setText("");
         renderSubjectChips();
-        renderQuickToggle(binding.chipUnder200k, false, R.color.surface_container_low, R.color.on_surface);
-        renderQuickToggle(binding.chipRating49, false, R.color.accent_coral_subtle, R.color.tertiary);
+        renderSortChips();
         applyFilters();
     }
 
@@ -182,36 +264,45 @@ public class TutorListFragment extends Fragment {
         }
     }
 
-    private void renderQuickToggle(@NonNull TextView chip, boolean active, int defaultBgRes, int defaultFgRes) {
+    private void renderSortChips() {
         Context ctx = requireContext();
-        int bg = ContextCompat.getColor(ctx, active ? R.color.primary : defaultBgRes);
-        int fg = ContextCompat.getColor(ctx, active ? R.color.on_primary : defaultFgRes);
-        chip.setBackgroundTintList(ColorStateList.valueOf(bg));
-        chip.setTextColor(fg);
+        int activeBg = ContextCompat.getColor(ctx, R.color.primary);
+        int activeFg = ContextCompat.getColor(ctx, R.color.on_primary);
+
+        for (SortChipSpec spec : sortChips) {
+            boolean active = spec.option == sortOption;
+            int bg = active ? activeBg : ContextCompat.getColor(ctx, spec.defaultBgRes);
+            int fg = active ? activeFg : ContextCompat.getColor(ctx, spec.defaultFgRes);
+            spec.view.setBackgroundTintList(ColorStateList.valueOf(bg));
+            spec.view.setTextColor(fg);
+        }
     }
 
     private void applyFilters() {
-        String q = searchQuery.trim().toLowerCase(Locale.ROOT);
-        List<TutorSearchAdapter.TutorCardModel> filtered = new ArrayList<>();
-        for (TutorSearchAdapter.TutorCardModel item : allTutors) {
-            boolean matchesSubject = "Tất cả".equals(selectedSubject) || item.subjectKey.equals(selectedSubject);
-            boolean matchesQuery = q.isEmpty() || item.searchBlob().contains(q);
-            boolean matchesPrice = !onlyUnder170k || item.priceValue <= 170000;
-            boolean matchesRating = !onlyHighRating || item.rating >= 4.95;
-            if (matchesSubject && matchesQuery && matchesPrice && matchesRating) {
-                filtered.add(item);
-            }
-        }
+        List<TutorSearchAdapter.TutorCardModel> filtered = TutorSearchAdapter.filterAndSort(
+                allTutors, selectedSubject, searchQuery, minPrice, maxPrice, sortOption
+        );
         adapter.submitList(filtered);
         binding.tvTutorCount.setText(String.format(Locale.US, "%d gia sư", filtered.size()));
         binding.viewFilterActiveDot.setVisibility(hasActiveFilters() ? View.VISIBLE : View.GONE);
         binding.layoutTutorSearchEmpty.setVisibility(filtered.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
+    private abstract static class SimpleTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         subjectChips = null;
+        sortChips = null;
         binding = null;
     }
 }

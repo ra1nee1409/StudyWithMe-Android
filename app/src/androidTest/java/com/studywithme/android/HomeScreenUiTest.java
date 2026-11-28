@@ -36,7 +36,6 @@ public class HomeScreenUiTest {
             View header = activity.findViewById(R.id.homeHeaderBar);
             View toolbar = activity.findViewById(R.id.toolbar);
             TextView heroTitle = activity.findViewById(R.id.tvHeroTitle);
-            RecyclerView reviewsRv = activity.findViewById(R.id.rvParentReviews);
             BottomNavigationView bottomNav = activity.findViewById(R.id.bottom_navigation);
 
             assertNotNull(header);
@@ -45,8 +44,6 @@ public class HomeScreenUiTest {
             assertEquals(View.VISIBLE, activity.findViewById(R.id.ivBrandWordmark).getVisibility());
             assertEquals(View.GONE, toolbar.getVisibility());
             assertTrue(heroTitle.getText().toString().contains("Gia sư 1-Kèm-1 chất lượng"));
-            assertNotNull(reviewsRv.getAdapter());
-            assertEquals(2, reviewsRv.getAdapter().getItemCount());
             assertEquals(5, bottomNav.getMenu().size());
         });
     }

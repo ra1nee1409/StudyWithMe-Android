@@ -36,7 +36,6 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private HomeViewModel viewModel;
     private FeaturedTutorAdapter tutorAdapter;
-    private ParentReviewAdapter reviewAdapter;
     private List<ChipSpec> filterChips;
 
     private static class ChipSpec {
@@ -118,12 +117,6 @@ public class HomeFragment extends Fragment {
                 new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         );
         binding.rvFeaturedTutors.setAdapter(tutorAdapter);
-
-        reviewAdapter = new ParentReviewAdapter();
-        binding.rvParentReviews.setLayoutManager(
-                new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        );
-        binding.rvParentReviews.setAdapter(reviewAdapter);
     }
 
     private void setupSearchAndFilters() {
@@ -231,7 +224,6 @@ public class HomeFragment extends Fragment {
                 ((MainActivity) getActivity()).setUnreadNotificationIndicator(data.unreadNotifications > 0);
             }
             bindCategories(data.categories);
-            reviewAdapter.submitList(data.reviews);
         });
 
         viewModel.getVisibleTutors().observe(getViewLifecycleOwner(), tutors -> {
