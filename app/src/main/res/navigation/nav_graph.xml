@@ -39,6 +39,12 @@
         <action
             android:id="@+id/action_home_to_course_detail"
             app:destination="@id/courseDetailFragment" />
+        <action
+            android:id="@+id/action_home_to_tutor_detail"
+            app:destination="@id/tutorDetailFragment" />
+        <action
+            android:id="@+id/action_home_to_booking"
+            app:destination="@id/booking1k1Fragment" />
     </fragment>
 
     <!-- Courses -->
@@ -50,6 +56,9 @@
         <action
             android:id="@+id/action_course_list_to_detail"
             app:destination="@id/courseDetailFragment" />
+        <action
+            android:id="@+id/action_course_list_to_booking"
+            app:destination="@id/booking1k1Fragment" />
     </fragment>
 
     <fragment
@@ -80,6 +89,9 @@
         <action
             android:id="@+id/action_tutor_list_to_detail"
             app:destination="@id/tutorDetailFragment" />
+        <action
+            android:id="@+id/action_tutor_list_to_booking"
+            app:destination="@id/booking1k1Fragment" />
     </fragment>
 
     <fragment

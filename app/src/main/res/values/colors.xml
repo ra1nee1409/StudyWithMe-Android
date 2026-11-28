@@ -2,4 +2,61 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand & Primary -->
+    <color name="primary">#00658B</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#00A5DF</color>
+    <color name="on_primary_container">#00364C</color>
+    <color name="primary_fixed">#C4E7FF</color>
+    <color name="primary_fixed_dim">#7DD0FF</color>
+    <color name="on_primary_fixed">#001E2C</color>
+
+    <!-- Secondary -->
+    <color name="secondary">#116394</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="secondary_container">#87C7FE</color>
+    <color name="secondary_fixed">#CCE5FF</color>
+    <color name="on_secondary_container">#00537F</color>
+
+    <!-- Tertiary (Warm Coral / Orange CTA) -->
+    <color name="tertiary">#A43E00</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="tertiary_container">#FF6D20</color>
+    <color name="on_tertiary_container">#5B1F00</color>
+    <color name="tertiary_fixed">#FFDBCD</color>
+    <color name="tertiary_fixed_dim">#FFB596</color>
+    <color name="on_tertiary_fixed">#360F00</color>
+
+    <!-- Surfaces & Neutrals -->
+    <color name="surface">#F8F9FF</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="surface_canvas">#F8FAFC</color>
+    <color name="surface_container_lowest">#FFFFFF</color>
+    <color name="surface_container_low">#EFF4FF</color>
+    <color name="surface_container">#E6EEFF</color>
+    <color name="surface_container_high">#DCE9FF</color>
+    <color name="surface_container_highest">#D5E3FC</color>
+    <color name="on_surface">#0D1C2E</color>
+    <color name="on_surface_variant">#3E484F</color>
+    <color name="outline">#6E7880</color>
+    <color name="outline_variant">#BDC8D1</color>
+
+    <!-- Subtle Accents & Status -->
+    <color name="accent_cyan_subtle">#E5F7FD</color>
+    <color name="accent_coral_subtle">#FFF0E8</color>
+    <color name="accent_navy_subtle">#E8F2F8</color>
+    <color name="status_success">#10B981</color>
+    <color name="status_warning">#F59E0B</color>
+    <color name="error">#BA1A1A</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="on_error_container">#93000A</color>
+
+    <!-- Overlays -->
+    <color name="white_90">#E6FFFFFF</color>
+    <color name="white_85">#D9FFFFFF</color>
+    <color name="white_15">#26FFFFFF</color>
+    <color name="white_12">#1FFFFFFF</color>
+    <color name="surface_bar_bg">#F5F8F9FF</color>
+    <color name="divider_subtle">#E8EFFA</color>
 </resources>

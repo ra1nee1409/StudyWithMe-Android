@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="286dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="4dp"
+    app:cardBackgroundColor="@color/surface_card"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="1.5dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- 5 Stars -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="2dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_star_filled"
+                app:tint="@color/status_warning" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="2dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_star_filled"
+                app:tint="@color/status_warning" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="2dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_star_filled"
+                app:tint="@color/status_warning" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="2dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_star_filled"
+                app:tint="@color/status_warning" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_star_filled"
+                app:tint="@color/status_warning" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvReviewQuote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:lineSpacingMultiplier="1.35"
+            android:minLines="4"
+            android:textColor="@color/on_surface"
+            android:textSize="12sp"
+            tools:text="“Bé Minh Anh nhà mình trước đây rất sợ môn Toán, chỉ được 5.0. Nhờ cô Yến kiên nhẫn giảng giải 1-1, học kỳ rồi con đã vươn lên 8.8. Rất yên tâm!”" />
+
+        <!-- Author Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/reviewAvatarBg"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_circle_shape"
+                android:backgroundTint="@color/accent_cyan_subtle">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivReviewAvatar"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:contentDescription="@string/section_reviews_title"
+                    android:padding="7dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_person"
+                    app:shapeAppearanceOverlay="@style/CircleAvatar"
+                    app:tint="@color/primary" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAuthorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="1"
+                    android:textColor="@color/on_surface"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="Chị Thanh Hương" />
+
+                <TextView
+                    android:id="@+id/tvAuthorRole"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/primary"
+                    android:textSize="11sp"
+                    tools:text="Mẹ bé Minh Anh (Lớp 9 - Hà Nội)" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

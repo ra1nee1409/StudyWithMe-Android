@@ -9,17 +9,17 @@ import com.google.gson.annotations.SerializedName;
  */
 public class ApiResponse<T> {
 
-    @SerializedName("success")
+    @SerializedName(value = "success", alternate = {"thanhCong"})
     private boolean success;
 
     @SerializedName("code")
     private int code;
 
-    @SerializedName("message")
+    @SerializedName(value = "message", alternate = {"thongBao"})
     @Nullable
     private String message;
 
-    @SerializedName("data")
+    @SerializedName(value = "data", alternate = {"duLieu"})
     @Nullable
     private T data;
 

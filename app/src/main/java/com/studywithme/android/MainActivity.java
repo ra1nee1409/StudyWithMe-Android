@@ -50,10 +50,56 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
             NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
 
+            setupBrandHeaderActions();
+
             navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-                boolean showBottomBar = NavigationHelper.shouldShowBottomBar(destination.getId());
-                binding.bottomNavigation.setVisibility(showBottomBar ? View.VISIBLE : View.GONE);
+                boolean isTopLevel = NavigationHelper.shouldShowBottomBar(destination.getId());
+                // All 5 top-level tabs share the StudyWithMe brand header; sub-screens use MaterialToolbar with back arrow.
+                binding.brandHeaderContainer.setVisibility(isTopLevel ? View.VISIBLE : View.GONE);
+                binding.toolbar.setVisibility(isTopLevel ? View.GONE : View.VISIBLE);
+
+                int barVis = isTopLevel ? View.VISIBLE : View.GONE;
+                binding.bottomNavigation.setVisibility(barVis);
+                binding.bottomNavDivider.setVisibility(barVis);
             });
+        }
+    }
+
+    private void setupBrandHeaderActions() {
+        binding.btnHeaderSearch.setOnClickListener(v -> {
+            if (navController == null) {
+                return;
+            }
+            if (navController.getCurrentDestination() != null
+                    && navController.getCurrentDestination().getId() != R.id.tutorListFragment) {
+                binding.bottomNavigation.setSelectedItemId(R.id.tutorListFragment);
+            }
+        });
+
+        binding.btnHeaderNotifications.setOnClickListener(v -> {
+            if (navController == null) {
+                return;
+            }
+            try {
+                navController.navigate(R.id.notificationFragment);
+            } catch (IllegalArgumentException | IllegalStateException ignored) {
+            }
+        });
+
+        binding.btnHeaderProfile.setOnClickListener(v ->
+                binding.bottomNavigation.setSelectedItemId(R.id.profileFragment)
+        );
+    }
+
+    public void setUnreadNotificationIndicator(boolean hasUnread) {
+        if (binding != null) {
+            binding.viewUnreadDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    public void selectBottomTab(int destinationId) {
+        if (binding != null) {
+            binding.bottomNavigation.setSelectedItemId(destinationId);
         }
     }
 

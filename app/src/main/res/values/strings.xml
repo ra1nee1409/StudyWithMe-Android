@@ -1,21 +1,25 @@
 <resources>
     <string name="app_name">StudyWithMe</string>
+    <string name="brand_tagline">Học tập thông minh</string>
 
     <!-- Bottom Navigation -->
     <string name="nav_home">Trang chủ</string>
+    <string name="nav_find_tutor">Tìm gia sư</string>
+    <string name="nav_my_classes">Lớp của tôi</string>
+    <string name="nav_chat">Tin nhắn</string>
+    <string name="nav_account">Tài khoản</string>
     <string name="nav_courses">Khóa học</string>
     <string name="nav_booking">Lịch 1:1</string>
-    <string name="nav_chat">Tin nhắn</string>
     <string name="nav_profile">Hồ sơ</string>
 
     <!-- Screen Labels -->
     <string name="title_login">Đăng nhập</string>
     <string name="title_register">Đăng ký</string>
     <string name="title_home">Trang chủ</string>
-    <string name="title_course_list">Khóa học</string>
+    <string name="title_course_list">Lớp của tôi</string>
     <string name="title_course_detail">Chi tiết khóa học</string>
     <string name="title_learning_player">Học bài</string>
-    <string name="title_tutor_list">Giảng viên</string>
+    <string name="title_tutor_list">Tìm gia sư</string>
     <string name="title_tutor_detail">Chi tiết giảng viên</string>
     <string name="title_booking_1k1">Đặt lịch 1 kèm 1</string>
     <string name="title_checkout">Thanh toán</string>
@@ -23,7 +27,79 @@
     <string name="title_conversation_list">Tin nhắn</string>
     <string name="title_chat_room">Phòng chat</string>
     <string name="title_notification">Thông báo</string>
-    <string name="title_profile">Hồ sơ cá nhân</string>
+    <string name="title_profile">Tài khoản</string>
     <string name="title_edit_profile">Chỉnh sửa hồ sơ</string>
     <string name="title_change_password">Đổi mật khẩu</string>
+
+    <!-- Home Header -->
+    <string name="cd_quick_search">Tìm kiếm nhanh</string>
+    <string name="cd_clear_search">Xóa từ khóa</string>
+    <string name="cd_notifications">Thông báo</string>
+    <string name="cd_user_profile">Tài khoản cá nhân</string>
+    <string name="cd_advanced_filter">Bộ lọc nâng cao</string>
+
+    <!-- Home Hero Banner -->
+    <string name="hero_badge_text">Tặng 2 buổi học thử 0đ</string>
+    <string name="hero_title_prefix">"Bứt phá điểm số cùng\n"</string>
+    <string name="hero_title_highlight">Gia sư 1-Kèm-1</string>
+    <string name="hero_title_suffix">" chất lượng"</string>
+    <string name="hero_subtitle">Lộ trình cá nhân hoá, kèm cặp tận tâm giúp học sinh tự tin chinh phục mọi kỳ thi.</string>
+    <string name="hero_cta">Đăng ký học thử ngay</string>
+    <string name="hero_student_count">+5k</string>
+
+    <!-- Search & Quick Filter Tags -->
+    <string name="search_hint">Tìm Toán, Văn, Anh, Luyện thi…</string>
+    <string name="filter_all">Tất cả</string>
+    <string name="filter_math9">Toán 9 ôn thi vào 10</string>
+    <string name="filter_ielts">IELTS 6.5+</string>
+    <string name="filter_chem_phys">Lấy gốc Hóa &amp; Lý</string>
+    <string name="filter_cambridge">Tiểu học Cambridge</string>
+    <string name="filter_grade_1_5">Lớp 1-5</string>
+    <string name="filter_grade_6_9">Lớp 6-9</string>
+    <string name="filter_grade_10_12">Lớp 10-12</string>
+
+    <!-- Categories -->
+    <string name="section_categories_title">Cấp lớp &amp; Chương trình</string>
+    <string name="action_see_more">Xem thêm</string>
+    <string name="cat_primary">Tiểu học</string>
+    <string name="cat_primary_sub">Lớp 1 - 5</string>
+    <string name="cat_secondary">THCS</string>
+    <string name="cat_secondary_sub">Lớp 6 - 9</string>
+    <string name="cat_highschool">THPT</string>
+    <string name="cat_highschool_sub">Lớp 10 - 12</string>
+    <string name="cat_cert">IELTS/Tin</string>
+    <string name="cat_cert_sub">Chứng chỉ</string>
+
+    <!-- Featured Tutors -->
+    <string name="section_tutors_title">Gia sư tiêu biểu</string>
+    <string name="section_tutors_subtitle">Top giảng viên xuất sắc &amp; tận tâm nhất</string>
+    <string name="action_see_all">Xem tất cả</string>
+    <string name="label_tuition">Học phí</string>
+    <string name="unit_per_session">/buổi</string>
+    <string name="cta_book_trial">Đặt lịch học thử</string>
+    <string name="tutor_empty_filter">Không tìm thấy gia sư phù hợp với bộ lọc hiện tại.</string>
+    <string name="action_reset_filter">Đặt lại bộ lọc</string>
+
+    <!-- Why Choose -->
+    <string name="section_why_title">Vì sao phụ huynh tin chọn?</string>
+    <string name="section_why_subtitle">Chất lượng kiểm duyệt, cam kết đồng hành</string>
+    <string name="why_1_title">Lớp 1-1 tương tác</string>
+    <string name="why_1_desc">Bảng số ảo trực quan, phản xạ hỏi đáp ngay trong buổi học.</string>
+    <string name="why_2_title">Báo cáo sau 90 phút</string>
+    <string name="why_2_desc">Cập nhật chi tiết kết quả và bài tập tự động về app phụ huynh.</string>
+    <string name="why_3_title">Cam kết tiến bộ</string>
+    <string name="why_3_desc" formatted="false">Hoàn tiền 100% học phí nếu không cải thiện kết quả sau 1 tháng.</string>
+    <string name="why_4_title">Đổi gia sư miễn phí</string>
+    <string name="why_4_desc">Linh hoạt thay đổi giáo viên phù hợp với tính cách và mục tiêu con.</string>
+
+    <!-- Parent Reviews -->
+    <string name="section_reviews_title">Đánh giá từ phụ huynh</string>
+    <string name="section_reviews_subtitle">Kết quả thực tế từ những học sinh đồng hành</string>
+
+    <!-- Bottom CTA Banner -->
+    <string name="bottom_cta_title">Đăng ký học thử 0đ</string>
+    <string name="bottom_cta_subtitle">Xếp lịch hẹn với gia sư trong 15 phút</string>
+    <string name="bottom_cta_btn">Nhận lịch học miễn phí</string>
+    <string name="hotline_number">1900 8888</string>
+    <string name="hotline_uri">tel:19008888</string>
 </resources>
